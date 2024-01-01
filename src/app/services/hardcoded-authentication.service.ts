@@ -21,4 +21,8 @@ export class HardcodedAuthenticationService {
     let user = sessionStorage.getItem('authenticationUser')
     return !(user === null)
   }
+
+  logout(){
+    sessionStorage.removeItem('authenticationUser')
+  }
 }

@@ -4,13 +4,13 @@
             My TODO App</a></div>
 
         <ul class="navbar-nav">
-            <li><a *ngIf="this.hardcodedAuthenticationService.isLoggedIn()" class="nav-link">Home</a></li>
-            <li><a *ngIf="this.hardcodedAuthenticationService.isLoggedIn()" class="nav-link">Todos</a></li>
+            <li><a *ngIf="this.hardcodedAuthenticationService.isLoggedIn()" routerLink="/welcome/:name" class="nav-link">Home</a></li>
+            <li><a *ngIf="this.hardcodedAuthenticationService.isLoggedIn()" routerLink="/todo" class="nav-link">Todos</a></li>
         </ul>
 
         <ul class="navbar-nav navbar-collapse justify-content-end">
-                <li><a *ngIf="!this.hardcodedAuthenticationService.isLoggedIn()" class="nav-link">Login</a></li>
-                <li><a *ngIf="this.hardcodedAuthenticationService.isLoggedIn()" class="nav-link">Logout</a></li>
+                <li><a *ngIf="!this.hardcodedAuthenticationService.isLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+                <li><a *ngIf="this.hardcodedAuthenticationService.isLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
         </ul>
     </nav>
 </header>
