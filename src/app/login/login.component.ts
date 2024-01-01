@@ -14,14 +14,14 @@ export class LoginComponent implements OnInit {
   invalidLogin = false
 
   constructor(private router: Router,
-    private hardcodedauthenticationservice: HardcodedAuthenticationService) { }
+    public hardcodedauthenticationservice: HardcodedAuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   handleLogin() {
-    // console.log("username: " + this.username)
-    // console.log("password: " + this.password)
+    console.info("username: " + this.username)
+    console.log("password: " + this.password)
     if (this.hardcodedauthenticationservice.authenticationService(this.username, this.password)) {
       this.invalidLogin = false
       this.router.navigate(["welcome", this.username])
