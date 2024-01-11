@@ -4,3 +4,7 @@
     click here to get a customized welcome message
     <button class = "btn btn-success" (click)="getWelcomeMessage()">Get Welcome message</button>
 </div>
+<div class = "container" *ngIf="response_message">
+    This is your customized welcome message
+    <H2>{{response_message}}</H2>
+</div>
