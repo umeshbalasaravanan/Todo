@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HelloworldBean, WelcomeDataService } from '../services/data/welcome-data.service';
+import { error } from 'cypress/types/jquery';
 
 @Component({
   selector: 'app-welcome',
@@ -11,6 +12,7 @@ export class WelcomeComponent implements OnInit {
 
   name = "";
   response_message = "";
+
   constructor(private router: ActivatedRoute,
     private welcomeDataService: WelcomeDataService) { }
 
@@ -22,13 +24,18 @@ export class WelcomeComponent implements OnInit {
   getWelcomeMessage() {
     console.log(this.welcomeDataService.executeHelloworldBeanService())
     this.welcomeDataService.executeHelloworldBeanService().subscribe(
-      response => this.handleSuccessfulResponse(response)
+      response => this.handleSuccessfulResponse(response),
+      error => this.handleErrorResponse(error)
     )
     console.log("last line of get welcome message")
-    }
-    handleSuccessfulResponse(response: HelloworldBean): void {
-      this.response_message = response.message; 
-    }
+  }
+  handleErrorResponse(error: any) {
+    this.response_message = error.error.message;
+  }
+  
+  handleSuccessfulResponse(response: HelloworldBean): void {
+    this.response_message = response.message;
+  }
 }
 
 
