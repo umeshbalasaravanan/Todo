@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoDataService } from '../services/data/todo-data.service';
 export class Todo{
   constructor(public id: number,
     public description: string,
@@ -12,19 +13,25 @@ export class Todo{
   styleUrls: ['./todolist.component.css']
 })
 export class TodolistComponent implements OnInit {
-
-  constructor() { }
+  constructor(private todoDataService: TodoDataService) { }
 
   // todo = {
   //   id : 1,
   //   description: "dance"
   // }
-  todos = [
-    new Todo(1, "play basketball", true, new Date(2023, 11, 27)),
-    new Todo(2, "to be skillful in angular", false, new Date()),
-    new Todo(3, "sleep well", true, new Date())
-  ]
+  todos: Todo[] | undefined;
+  //   new Todo(1, "play basketball", true, new Date(2023, 11, 27)),
+  //   new Todo(2, "to be skillful in angular", false, new Date()),
+  //   new Todo(3, "sleep well", true, new Date())
+  // ]
   ngOnInit(): void {
+    let user = sessionStorage.getItem('authenticatedUser')
+    console.log("user after entering into todos page: " + user)
+    this.todoDataService.retrieveTodoData(user).subscribe(
+      response => {
+        this.todos = response;
+      }
+    )
   }
 
 }
