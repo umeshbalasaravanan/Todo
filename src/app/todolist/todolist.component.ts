@@ -55,4 +55,8 @@ export class TodolistComponent implements OnInit {
     console.log(`update of Todo ${id}`)
     this.router.navigate(['todos', id])
   }
+
+  addTodo() {
+    this.router.navigate(['todos', -1])
+    }
 }
