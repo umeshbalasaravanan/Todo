@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../services/data/todo-data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 export class Todo {
   constructor(public id: number,
     public description: string,
@@ -15,7 +15,8 @@ export class Todo {
 })
 export class TodolistComponent implements OnInit {
 
-  constructor(private todoDataService: TodoDataService) { }
+  constructor(private todoDataService: TodoDataService,
+    private router: Router) { }
 
   // todo = {
   //   id : 1,
@@ -34,7 +35,7 @@ export class TodolistComponent implements OnInit {
   refreshTodos() {
     let user = sessionStorage.getItem('authenticatedUser')
     console.log("user after entering into todos page: " + user)
-    this.todoDataService.retrieveTodoData(user).subscribe(
+    this.todoDataService.retrieveTodos(user).subscribe(
       response => {
         this.todos = response;
       }
@@ -49,5 +50,9 @@ export class TodolistComponent implements OnInit {
         this.refreshTodos()
       }
     )
+  }
+  updateTodo(id: number){
+    console.log(`update of Todo ${id}`)
+    this.router.navigate(['todos', id])
   }
 }
