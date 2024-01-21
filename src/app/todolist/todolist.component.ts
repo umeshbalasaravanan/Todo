@@ -23,7 +23,7 @@ export class TodolistComponent implements OnInit {
   //   description: "dance"
   // }
   todos: Todo[] | undefined;
-  username: string | undefined;
+  username! : string;
   message = "";
   //   new Todo(1, "play basketball", true, new Date(2023, 11, 27)),
   //   new Todo(2, "to be skillful in angular", false, new Date()),
