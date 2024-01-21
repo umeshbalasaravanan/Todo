@@ -20,22 +20,23 @@ export class WelcomeDataService {
     // console.log("execute hello world bean service");
   }
   executeHelloworldBeanServicewithPathVariable(name: string) {
-    let basicAuthHeaderString = this.createAuthenticationHttpHeader()
-    console.log("basicAuthHeaderString: " + basicAuthHeaderString)
-    let header = new HttpHeaders({
-      Authentication: basicAuthHeaderString
-    })
+    // let basicAuthHeaderString = this.createAuthenticationHttpHeader()
+    // console.log("basicAuthHeaderString: " + basicAuthHeaderString)
+    // let header = new HttpHeaders({
+    //   Authentication: basicAuthHeaderString
+    // })
     return this.httpclient.get<HelloworldBean>(`http://localhost:8080/hello-world-bean/path-variable/${name}`,
-    {headers: header});
+    // {headers: header}
+    );
     // console.log("execute hello world bean service");
   }
-  createAuthenticationHttpHeader(): string{
-    let username = 'umeshbalasaravanan'
-    let password = 'dummy'
-    let authenticationHeaderString = 'Basic ' + window.btoa(username + ':' + password)
-    console.log("authenticationHeaderString: " + authenticationHeaderString)
-    return authenticationHeaderString
-  }
+  // createAuthenticationHttpHeader(): string{
+  //   let username = 'umeshbalasaravanan'
+  //   let password = 'dummy'
+  //   let authenticationHeaderString = 'Basic ' + window.btoa(username + ':' + password)
+  //   console.log("authenticationHeaderString: " + authenticationHeaderString)
+  //   return authenticationHeaderString
+  // }
 }
 //Access to XMLHttpRequest at 'http://localhost:8080/login' 
 //(redirected from 'http://localhost:8080/hello-world-bean/path-variable/umeshbalasaravanan') 
