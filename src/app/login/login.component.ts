@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-    // console.log("username: " + this.username)
-    // console.log("password: " + this.password)
+    console.log("username: " + this.username)
+    console.log("password: " + this.password)
     if (this.hardcodedauthenticationservice.authenticationService(this.username, this.password)) {
       this.invalidLogin = false
       this.router.navigate(["welcome", this.username])
@@ -34,8 +34,23 @@ export class LoginComponent implements OnInit {
   }
 
   handleBasicAuthLogin() {
-    
+    console.log("username: " + this.username + "| password: " + this.password)
     this.basicAuthenticationService.executeAuthenticationService(this.username, this.password)
+    .subscribe(
+      data => {
+        console.log(data)
+        this.router.navigate(['welcome', this.username])
+        this.invalidLogin = false
+      },
+      error => {
+        console.log(error)
+        this.invalidLogin = true
+      }
+    )
+  }
+  handleJWTAuthLogin() {
+    console.log("username: " + this.username + "| password: " + this.password)
+    this.basicAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
     .subscribe(
       data => {
         console.log(data)
